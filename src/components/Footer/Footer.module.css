@@ -1,0 +1,67 @@
+.topFooter {
+    background: #e6f1ff;
+    padding: 2vw 0;
+}
+
+.topFooterContent {
+    display: flex;
+    justify-content: space-between;
+    width: 75%;
+    margin: 0 auto;
+}
+
+.topFooterLeft {
+    font-size: 1.5vw;
+    font-weight: 500;
+}
+
+
+.topFooterRight {
+    font-weight: 500;
+    color: #0373f3;
+    padding: 0.8vw 2vw;
+    border-radius: 99px;
+    background-color: white;
+}
+
+/* ---------------------------------footer-------------------------- */
+
+.footer {
+    background-image: url('../../../public/asset/images/mapfooter1.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-height: 18vw;
+    display: flex;
+    align-items: center;
+}
+
+.footerContent {}
+
+.footerTitle {
+    font-size: 1.5vw;
+    font-weight: 500;
+    color: #0373f3;
+}
+
+.footerGoogleApp {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: black;
+    color: white;
+    padding: 10px;
+    border-radius: 20px;
+    margin: 1vw 0; 
+}
+
+.footerAppleApp {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: #0373f3;
+    color: white;
+    padding: 10px;
+    border-radius: 20px;
+}
+

@@ -1,0 +1,355 @@
+
+:root {
+    --main-color: #0373f3;
+}
+
+:global(.ant-menu .ant-menu-submenu .ant-menu-submenu-title) {
+  height: 2.6vw;
+}
+
+:global(.ant-menu .ant-menu-submenu-arrow::before),
+:global(.ant-menu .ant-menu-submenu-arrow::after) {
+  background-color: white;
+}
+
+:global(.ant-checkbox .ant-checkbox-inner) {
+  width: 0.9vw;
+  height: 0.9vw;
+}
+:global(.ant-popover .ant-popover-inner) {
+  background-color: #f4f6f8
+  
+}
+
+
+/* ----------------------header-------------------------------- */
+
+.header {
+    background: linear-gradient(to right, #0070C0, #29ABE2);
+}
+
+
+/*-----------------------------topHeader--------------------------- */
+.topHeader {
+    display: flex;
+    justify-content: space-between;
+    width: 85%;
+    margin: 0 auto;
+    font-size: 0.8vw;
+    color: white;
+}
+
+
+/*-----------------------------navigate--------------------------- */
+.navigate {
+    display: flex;
+    font-size: 0.9vw;
+    justify-content: space-between;
+    width: 85%;
+    color: black;
+    margin: 0 auto;
+}
+
+.navigateLeft {
+    position: relative;
+    width: 20%;
+    height: 100%;
+}
+
+
+.logoImg {
+    height: 100%;
+    width: 100%;
+    z-index: 200;
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+.navigateCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+}
+
+.navigateForm {
+    display: flex;
+    align-items: center;
+    border: 2px solid #007bff;
+    border-radius: 999px;
+    padding: 0.8vw;
+    width: 100%;
+    height: 40%;
+}
+
+.inputForm {
+    border: none;
+    width: 100%;
+}
+
+
+.inputButton {
+    padding: 0.5vw 1.5vw;
+    border: none;
+    border-radius: 99px;
+    background-color: var(--main-color);
+    margin-left: 1vw;
+}
+
+
+
+
+.navigateRight {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 25%;
+}
+
+.starIcon {
+    padding: 0.4vw;
+    background-color: red;
+    color: yellow;
+    border-radius: 99px;
+    margin-right: 5px;
+}
+
+.usaIcon {
+    padding: 0.4vw;
+    background-color: #0373f3;
+    color: #a60306;
+    border-radius: 99px;
+    margin-right: 5px;
+}
+
+
+.basketIcon {
+    color: var(--main-color);
+    font-size: 1.5vw;
+}
+
+.userIcon {
+    font-size: 0.9vw;
+    color: white;
+    padding: 0.4vw;
+    background-color: var(--main-color);
+    border-radius: 99px;
+}
+
+
+.badge {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 99px;
+    width: 1.2vw;
+    height: 1.2vw;
+    background: red;
+    color: white;
+    position: absolute;
+    bottom: 1.1vw;
+    left: 1vw;
+}
+
+
+
+
+/* ----------------------------menu--------------------------- */
+
+.menu {
+    display: flex;
+    justify-content: space-between;
+    width: 85%;
+    margin: 1vw auto;
+    font-size: 0.85vw;
+}
+
+
+.leftMenu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.iconList {
+    color: white;
+}
+
+
+.menuLabel {
+    position: relative;
+    display: inline-block;
+    color: white;
+    font-size: 0.85vw;
+    width: 100%;
+}
+
+
+
+
+
+.rightMenu {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+
+}
+
+.menuItem {
+    margin: 0 0.8vw;
+    font-weight: 500;
+}
+
+.menuIcon {
+    color: var(--main-color);
+}
+
+
+
+.productimage {
+    width: 100%;
+    height: 35vh;
+    object-fit: cover;
+
+}
+
+.dealsock {
+    margin-top: 0.9vw;
+    font-size: 0.9vw;
+    width: 60%;
+    padding: 2px;
+    background-color: #ffc339;
+    border-radius: 99px;
+}
+
+.dealsockicon {
+    padding: 2px;
+    border-radius: 99px;
+    color: #ff8641;
+    background: #ffe4ca;
+}
+
+.dealsockcontent {
+    color: #7a0916;
+}
+
+
+.price {
+    margin-top: 1vw;
+    color: #b71d18;
+}
+
+.oldPrice {
+    text-decoration: line-through;
+    font-size: 0.8vw;
+    color: #a5b0bb;
+}
+
+
+.buyButton {
+    background: #e6f1ff;
+    color: #1e71d1;
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+}
+
+.buyButton:hover {
+    border: 2px solid #025fca;
+}
+
+/* -------------------------------dropdown---------------------------- */
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdownbutton {
+    color: black;
+    font-size: 0.9vw;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdowndownloadapp {
+    cursor: pointer;
+}
+
+
+
+
+.dropdownbasketcontent {
+    border-radius: 10px;
+    display: none;
+    position: absolute;
+    background-color: #ffff;
+    color: black;
+    width: 14vw;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 2000;
+    right: 0%;
+}
+
+.dropdown:hover .dropdownbasketcontent {
+    display: block;
+}
+
+
+.dropdownaccountcontent {
+    display: none;
+    position: absolute;
+    background-color: #ffff;
+    color: black;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 2000;
+    left: -20%;
+}
+
+.dropdown:hover .dropdownaccountcontent {
+    display: block;
+    width: 8vw;
+    text-align: center;
+}
+
+
+.dropdowntranslatecontent {
+    display: none;
+    position: absolute;
+    background-color: #ffff;
+    color: black;
+    /* width: 14vw; */
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 2000;
+    left: -50%;
+}
+
+.dropdown:hover .dropdowntranslatecontent {
+    display: block;
+    width: 7vw;
+    text-align: center;
+}
+
+.dropdowndownloadappcontent {
+    border: 2px solid #f4f6f8;
+    border-radius: 10px;
+    display: none;
+    position: absolute;
+    background-color: #ffffff;
+    width: 9vw;
+    z-index: 2000;
+    left: -10%;
+}
+
+
+.dropdown:hover .dropdowndownloadappcontent {
+    display: block;
+}

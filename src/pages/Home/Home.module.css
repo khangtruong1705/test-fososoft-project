@@ -1,0 +1,254 @@
+/* GridExample.module.css */
+/* File: styles.css */
+:root {
+  --main-color: #0373f3;
+}
+
+
+
+.container {}
+
+.loadingOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(255, 255, 255, 0.49);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  color: #ee4e2e;
+}
+
+
+/* ---------------------------------topHome--------------------------- */
+
+.topHome {
+  display: flex;
+  width: 85%;
+  margin: 0 auto;
+  padding: 10px 0;
+  font-size: 0.8vw;
+}
+
+.topHomeText1 {
+  color: #a3afba;
+}
+
+
+.topHomeText2 {
+  color: var(--main-color);
+  ;
+
+}
+
+
+/* --------------------------carousel -------------------------------------*/
+
+.voucher {
+  background: #025fca;
+  width: 85%;
+  margin: 0 auto;
+  height: 64vw;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  ;
+}
+
+
+.carousel {
+  padding: 2vw;
+}
+
+
+.carouselCard {
+  height: 31vw;
+
+}
+
+.cardDescription {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 0.9vw;
+}
+
+
+.productimage {
+  width: 100%;
+  height: 15vw;
+  object-fit: cover;
+
+}
+
+.dealsock {
+  display: flex;
+  align-items: center;
+  margin-top: 0.9vw;
+  font-size: 0.9vw;
+  width: 60%;
+  padding: 0.15vw;
+  background-color: #ffc339;
+  border-radius: 99px;
+}
+
+.dealsockicon {
+  padding: 2px;
+  border-radius: 99px;
+  color: #ff8641;
+  background: #ffe4ca;
+  font-size: 0.9vw;
+}
+
+.dealsockcontent {
+  color: #7a0916;
+  font-size: 0.9vw;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+.price {
+  margin-top: 1vw;
+  color: #b71d18;
+  font-size: 1.1vw;
+}
+
+.oldPrice {
+  text-decoration: line-through;
+  font-size: 0.8vw;
+  color: #a5b0bb;
+}
+
+
+.buyButton {
+  font-size: 1.05vw;
+  margin: 1vw 0;
+  font-weight: 500;
+  background: #e6f1ff;
+  color: #1e71d1;
+  width: 100%;
+  padding: 0.25vw;
+  border-radius: 5px;
+  border: none;
+}
+
+.buyButton:hover {
+  border: 2px solid #025fca;
+}
+
+.cornercheck {
+  border-radius: 3px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20px;
+  height: 20px;
+  background-color: #0d6efd;
+  /* Bootstrap primary */
+  clip-path: polygon(100% 0, 100% 100%, 0 0);
+}
+
+/* ----------------------------------products------------------------ */
+
+.mainProducts {
+  width: 85%;
+  margin: 2vw auto;
+  display: flex;
+  gap: 1vw;
+}
+
+.filter {
+  background: white;
+  max-height: 18vw;
+}
+
+.filterTitle {
+  font-size: 1.8vw;
+  color: #025fca;
+}
+
+.filterIcon {
+  color: #025fca;
+  margin: 0 1vw;
+}
+
+.filterContent {
+ font-size: 1.6vw;
+ font-weight: 500;
+}
+
+
+
+.products {
+  width: 100%;
+}
+
+.productsFitler {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.arrayProducts {
+  margin-top: 2rem;
+}
+
+.carditem {
+  margin: 0.9vw 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 0;
+  border-radius: 10px;
+  height: 30vw;
+}
+
+.carditem:hover {
+  transform: translateY(-2px);
+  border: 2px solid #0373f3;
+}
+
+
+/* -----------------------bottom-Home--------------------------- */
+
+
+.bottomHome {
+  width: 85%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bottomHomeItem {
+  border-radius: 10px;
+  padding: 1.5vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6vw;
+  background-color: #ffffff;
+  margin: 2vw 0;
+  width: 19vw;
+  height: 7vw;
+}
+
+.bottomHomeItemTitle {
+  font-weight: 500;
+}
+
+.bottomHomeItemContent {
+  font-size: 0.8vw;
+  color: #a7b0b8;
+}
+
+.bottomHomeItemIcon {
+  font-size: 1.4vw;
+  color: #0373f3;
+  padding: 0.5vw;
+  background: #e6f1ff;
+  border-radius: 99px;
+}
