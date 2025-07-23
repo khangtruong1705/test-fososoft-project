@@ -11,9 +11,9 @@ import { useNavigate } from "react-router-dom";
 
 const Header = () => {
     const navigate = useNavigate();
+
+    // --------------translate-feature----------------------------
     const { t, i18n } = useTranslation();
-    const amountCart = useSelector((state) => state.getAmountCart.amountCart);
-    const [stateOpenKeys, setStateOpenKeys] = useState(['2', '23']);
     const [language, setLanguage] = useState(
         <div>
             <i className={`${styles.starIcon} fa-solid fa-star `} />
@@ -22,6 +22,11 @@ const Header = () => {
     const changeLanguage = (lng) => {
         i18n.changeLanguage(lng);
     };
+    // -------------get-state-from-redux--------------------------
+    const amountCart = useSelector((state) => state.getAmountCart.amountCart);
+
+    // -----------------------use-component-Menu-Ant-Design--------------------------
+    const [stateOpenKeys, setStateOpenKeys] = useState(['2', '23']);
     const categoriesDropdownContent = <div style={{ width: '50vw', background: '#f4f6f8', padding: '0' }}>
         <div className='items row'>
             {Array(6).fill('Bộ Lọc Gió').map((text, index) => (
@@ -65,7 +70,7 @@ const Header = () => {
                     <div className='card' style={{ height: '17vw' }}>
                         <div className='card-body'>
                             <img style={{ width: '100%' }} src={process.env.PUBLIC_URL + '/asset/images/locgio1.png'} />
-                           <p style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', fontWeight: '500' }}>Lọc Gió Động Cơ Air Filter-Chevolet</p>
+                            <p style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', fontWeight: '500' }}>Lọc Gió Động Cơ Air Filter-Chevolet</p>
                             <div style={{ color: '#b71d18', fontWeight: '500' }}>299.000đ</div>
                             <div style={{ fontSize: '0.8vw' }}>
                                 <span style={{ color: '#b3bcc5', textDecoration: 'line-through' }}> 199.000 </span>
@@ -103,9 +108,11 @@ const Header = () => {
     const items = [
         {
             key: '1',
-            icon: <UnorderedListOutlined style={{ color: 'white', fontSize: '1vw' }} />,
             label: (
-                <span style={{ color: 'white', fontSize: '0.85vw' }}>{t('Categories')}</span>
+                <span style={{ color: 'white', fontSize: '0.85vw' }}>
+                    <span><UnorderedListOutlined style={{ margin: '0 0.5vw', fontSize: '1vw' }} /></span>
+                    {t('Categories')}
+                </span>
             ),
             children: [
                 {
@@ -115,7 +122,6 @@ const Header = () => {
                             content={categoriesDropdownContent}
                             placement="right"
                             trigger="hover"
-
                         >
                             <span className={styles.menuLabel}>
                                 <i className="fa-solid fa-oil-well mx-1" />
@@ -220,13 +226,14 @@ const Header = () => {
         updated_at: null,
         views: 344
     };
-    return <div className={`${styles.header} container-fluid p-0`}>
+
+    return <div className={`${styles.header} p-0`}>
         <div className={styles.topHeader} >
-            <div>{t('entercode')} <strong style={{ color: '#ecc554' }} >NEWBIE</strong> {t('statement1')}</div>
-            <div className='d-flex'>
-                <div className='mx-3'>
+            <div className={styles.topHeaderLeft} >{t('entercode')} <strong>NEWBIE</strong> {t('statement1')}</div>
+            <div className={styles.topHeaderRight}>
+                <div className={`${styles.topHeaderRightItemLeft} mx-3`}>
                     <i className="fa-solid fa-phone" />
-                    <span className='mx-2'>{t('hotline')}: <strong style={{ color: '#ecc554' }}>0283 760 7607</strong></span>
+                    <span className='mx-2'>{t('hotline')}: <strong>0283 760 7607</strong></span>
                 </div>
                 <div className={styles.dropdown}>
                     <div className={styles.dropdowndownloadapp}>
@@ -239,7 +246,7 @@ const Header = () => {
                 </div>
             </div>
         </div>
-        <div style={{ background: 'white' }}>
+        <div className={styles.headerMain}>
             <div className={styles.navigate}>
                 <div className={`${styles.navigateLeft}`}>
                     <img onClick={() => { navigate('/') }} className={styles.logoImg} src={process.env.PUBLIC_URL + '/asset/images/logo.jpg'}></img>
@@ -247,18 +254,17 @@ const Header = () => {
                 <div className={`${styles.navigateCenter}`}>
                     <div className={`${styles.navigateForm}`}>
                         <input className={`${styles.inputForm}`} type="text" placeholder="Tìm sản phẩm" />
-                        <i style={{ fontSize: '1.6vw' }} className=" text-primary fa-solid fa-camera icon" />
+                        <i className="fa-solid fa-camera icon" />
                         <button className={`${styles.inputButton}`}>
-                            <i className="fa-solid fa-magnifying-glass text-white" />
+                            <i className="fa-solid fa-magnifying-glass" />
                         </button>
                     </div>
                 </div>
                 <div className={`${styles.navigateRight}`}>
-
                     <div className={styles.dropdown}>
                         <span className={styles.dropdownbutton}>{language}</span>
                         <div className={styles.dropdowntranslatecontent}>
-                            <div >
+                            <div>
                                 <span style={{ cursor: 'pointer' }} onClick={() => {
                                     setLanguage(<div>
                                         <i className={`${styles.starIcon} fa-solid fa-star `} />
@@ -270,7 +276,7 @@ const Header = () => {
                             <div >
                                 <span style={{ cursor: 'pointer' }} onClick={() => {
                                     setLanguage(<div>
-                                        <i className={`${styles.usaIcon} fa-solid fa-flag-usa`}></i>
+                                        <img style={{width:'1.7vw',height:'1.7vw',margin:'0 0.2vw' }} className={styles.usaIcon}  src={process.env.PUBLIC_URL + '/asset/images/flaguk.png'} />
                                         <span>ENG</span>
                                     </div>)
                                     changeLanguage('en')
@@ -293,12 +299,12 @@ const Header = () => {
                                             <i className={`${styles.dealsockicon} fa-solid fa-fire mx-1`} />
                                             <span className={styles.dealsockcontent}>Giá cực sốc</span>
                                         </div>
-                                        <div style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', fontSize: '0.9vw' }}><strong>{product.description}</strong></div>
+                                        <div className={styles.productdescription}><strong>{product.description}</strong></div>
                                         <div className={styles.price}>
                                             <strong className='text-center' >{product.price.toLocaleString('vi-VN')}₫</strong>
                                             <div className={styles.oldPrice}>399.000₫ -10%</div>
                                         </div>
-                                        <button className={styles.buyButton}>Mua Ngay</button>
+                                        <button className={styles.cardButton}>Mua Ngay</button>
                                     </div>
                                 </div>
                             </div>
@@ -315,8 +321,6 @@ const Header = () => {
                         </div>
                     </div>
                 </div>
-
-
             </div>
             <div className={`${styles.menu}`} >
                 <div className={`${styles.leftMenu}`}>
@@ -328,7 +332,6 @@ const Header = () => {
                         style={{ width: '15.5vw', height: '100%', background: '#0155c6', borderRadius: '10px' }}
                         items={items}
                     />
-
                     <div className={`${styles.menuItem}`}>{t('aboutus')}</div>
                     <div className={`${styles.menuItem}`}>{t('blogposts')}</div>
                     <div className={`${styles.menuItem}`}>Catalog</div>
@@ -347,11 +350,10 @@ const Header = () => {
                         <i className={`${styles.menuIcon} fa-solid fa-truck mx-1`} />
                         {t('expressdelivery')}
                     </div>
-                    <div className='fw-medium'>
+                    <div style={{ margin: '0' }} className={`${styles.menuItem} fw-medium`}>
                         <i className={`${styles.menuIcon} fa-solid fa-rotate mx-1`} />
                         {t('return')}
                     </div>
-
                 </div>
             </div>
         </div>

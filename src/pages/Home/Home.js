@@ -1,5 +1,5 @@
 import styles from './Home.module.css' // Import CSS Module
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useState, useEffect } from 'react'
 import axios from 'axios';
 import { DOMAIN } from '../../util/config';
@@ -17,6 +17,9 @@ import 'swiper/css/navigation';
 import { useTranslation } from 'react-i18next';
 
 const Home = () => {
+    // -------------------------translation-feature--------------------------
+    const { t } = useTranslation();
+
     //--- loadingOverlay--effect-------------------------------
     const [loading, setLoading] = useState(true);
 
@@ -72,40 +75,45 @@ const Home = () => {
     const [page, setPage] = useState(1);
     const [hasMore, setHasMore] = useState(true);
 
-    // -------------------------translation-feature--------------------------
-    const { t } = useTranslation();
-
     // ----------------------checkbox-function----------------------------
     const onChange = e => {
         console.log(`checked = ${e.target.checked}`);
     };
 
+    // --------------------------filter-buttons------------------------
+    const sortOptions = [
+        { id: 1, label: t('relevant') },
+        { id: 2, label: t('bestseller') },
+        { id: 3, label: t('newest') },
+        { id: 4, label: t('featured') },
+    ];
+
     // ----------------------use-Menu-component-ant-design------------------------
     const items = [
         {
             key: '1',
-            label: <strong style={{ fontSize: '0.9vw' }}>Danh Mục Sản Phẩm</strong>,
+            label: <strong style={{ fontSize: '0.9vw' }}>{t('Categories')}</strong>,
             children: [
                 { key: '11', label: <span style={{ fontSize: '0.9vw' }}><Checkbox style={{}} onChange={onChange}></Checkbox> Lọc Gió Động Cơ - Air Filter</span> },
                 { key: '12', label: <span style={{ fontSize: '0.9vw' }}><Checkbox onChange={onChange}></Checkbox> Lọc Nhiên Liệu - Fuel Filter</span> },
                 { key: '13', label: <span style={{ fontSize: '0.9vw' }}><Checkbox onChange={onChange}></Checkbox> Bộ lọc dầu</span> },
-                { key: '14', label: <span style={{ fontSize: '0.9vw' }}><Checkbox onChange={onChange}></Checkbox> Chưa Phân Loại</span> },
-                { key: '15', label: <span style={{ fontSize: '0.9vw' }}><Checkbox onChange={onChange}></Checkbox> Khác</span> },
+                { key: '14', label: <span style={{ fontSize: '0.9vw' }}><Checkbox onChange={onChange}></Checkbox> {t('uncategorized')}</span> },
+                { key: '15', label: <span style={{ fontSize: '0.9vw' }}><Checkbox onChange={onChange}></Checkbox>{t('others')}</span> },
             ],
         },
         {
             key: '2',
-            label: <strong style={{ fontSize: '0.9vw' }}>Khoảng Giá</strong>,
+            label: <strong style={{ fontSize: '0.9vw' }}>{t('pricerange')}</strong>,
             children: [
-                { key: '21', label: <Button style={{ width: '100%', fontSize: '1vw' }}>Dưới 100.000₫</Button> },
+                { key: '21', label: <Button style={{ width: '100%', fontSize: '1vw' }}>{t('under')} 100.000₫</Button> },
                 { key: '22', label: <Button style={{ width: '100%', fontSize: '1vw' }}>100.000₫ - 300.000₫</Button> },
                 { key: '23', label: <Button style={{ width: '100%', fontSize: '1vw' }}>300.000₫ - 500.000₫</Button> },
-                { key: '24', label: <Button style={{ width: '100%', fontSize: '1vw' }}>Trên 500.000₫</Button> },
+                { key: '24', label: <Button style={{ width: '100%', fontSize: '1vw' }}>{t('over')} 500.000₫</Button> },
             ],
         },
         {
             key: '3',
-            label: <strong style={{ fontSize: '0.9vw' }}>Thương Hiệu</strong>,
+            label: <strong style={{ fontSize: '0.9vw' }}>{t('brand')}</strong>,
             children: [
                 { key: '31', label: <span style={{ fontSize: '0.9vw' }}><Checkbox onChange={onChange}></Checkbox> Asakashi</span> },
                 { key: '32', label: <span style={{ fontSize: '0.9vw' }}><Checkbox onChange={onChange}></Checkbox> Bosch</span> },
@@ -114,7 +122,7 @@ const Home = () => {
         },
         {
             key: '4',
-            label: <strong style={{ fontSize: '0.9vw' }}>Năm sản xuất</strong>,
+            label: <strong style={{ fontSize: '0.9vw' }}>{t('yearofmanufacture')}t</strong>,
             children: [
                 { key: '431', label: <span style={{ fontSize: '0.9vw' }}><Checkbox onChange={onChange}></Checkbox> 2021</span> },
                 { key: '432', label: <span style={{ fontSize: '0.9vw' }}><Checkbox onChange={onChange}></Checkbox> 2020</span> },
@@ -124,11 +132,11 @@ const Home = () => {
         },
         {
             key: '5',
-            label: <strong style={{ fontSize: '0.9vw' }}>Xuất xứ</strong>,
+            label: <strong style={{ fontSize: '0.9vw' }}>{t('origin')}</strong>,
             children: [
-                { key: '531', label: <span style={{ fontSize: '0.9vw' }}><Checkbox onChange={onChange}></Checkbox> Nhật Bản</span> },
-                { key: '532', label: <span style={{ fontSize: '0.9vw' }}><Checkbox onChange={onChange}></Checkbox> Đức</span> },
-                { key: '533', label: <span style={{ fontSize: '0.9vw' }}><Checkbox onChange={onChange}></Checkbox> Trung Quốc</span> },
+                { key: '531', label: <span style={{ fontSize: '0.9vw' }}><Checkbox onChange={onChange}></Checkbox> {t('japan')}</span> },
+                { key: '532', label: <span style={{ fontSize: '0.9vw' }}><Checkbox onChange={onChange}></Checkbox> {t('germany')}</span> },
+                { key: '533', label: <span style={{ fontSize: '0.9vw' }}><Checkbox onChange={onChange}></Checkbox> {t('china')}</span> },
             ],
         },
     ];
@@ -222,9 +230,8 @@ const Home = () => {
     return <>
         {loading ? (
             <div className={styles.loadingOverlay}>
-                <div className="spinner-border text-danger" role="status">
-                    <span className="visually-hidden">Loading...</span>
-                </div>
+                <div className={styles.customSpinner}></div>
+                <div style={{ marginTop: '1rem', fontSize: '1.2rem', color: '#0373f3' }}>Loading...</div>
             </div>) : (
             <>
                 <div className={`${styles.container}`}>
@@ -282,7 +289,7 @@ const Home = () => {
                                                         <strong className='text-center' >{product.price.toLocaleString('vi-VN')}₫</strong>
                                                         <div className={styles.oldPrice}>399.000₫ -10%</div>
                                                     </div>
-                                                    <button className={styles.buyButton}>Mua Ngay</button>
+                                                    <button className={styles.cardButton}>Mua Ngay</button>
                                                 </div>
                                             </div>
                                         </NavLink>
@@ -300,7 +307,7 @@ const Home = () => {
                             <hr></hr>
                             <Menu
                                 mode="inline"
-                                defaultSelectedKeys={['231']}
+                                defaultSelectedKeys={['1']}
                                 openKeys={stateOpenKeys}
                                 onOpenChange={onOpenChange}
                                 style={{ width: '18vw' }}
@@ -308,49 +315,41 @@ const Home = () => {
                             />
                         </div>
                         <div className={styles.products}>
-                            <div className={styles.productsFitler}>
-                                <strong style={{ fontSize: '1.4vw' }}>Danh sách sản phẩm</strong>
-                                <div className='d-flex justify-content-between gap-3' >
-                                    <Button style={{ fontSize: '0.9vw', width: '5.6vw' }} onClick={() => handleSortChange(1)} className={` ${selectedSort === 1 ? 'border border-primary' : 'btn-outline-primary'}`}>
-                                        Liên quan
-                                        {selectedSort === 1 && (
-                                            <span className={styles.cornercheck}>
-                                                <i style={{ fontSize: '0.5vw', color: 'white', position: 'absolute', top: '3px' }} className="fa-solid fa-check" />
-                                            </span>
-                                        )}
-                                    </Button>
-                                    <Button style={{ fontSize: '0.9vw', width: '5.6vw' }} onClick={() => handleSortChange(2)} className={` ${selectedSort === 2 ? 'border border-primary' : 'btn-outline-primary'}`}>
-                                        Bán chạy
-                                        {selectedSort === 2 && (
-                                            <span className={styles.cornercheck}>
-                                                <i style={{ fontSize: '0.5vw', color: 'white', position: 'absolute', top: '3px' }} className="fa-solid fa-check" />
-                                            </span>
-                                        )}
-                                    </Button>
-                                    <Button style={{ fontSize: '0.9vw', width: '5.6vw' }} onClick={() => handleSortChange(3)} className={` ${selectedSort === 3 ? 'border border-primary' : 'btn-outline-primary'}`}>
-                                        Mới nhất
-                                        {selectedSort === 3 && (
-                                            <span className={styles.cornercheck}>
-                                                <i style={{ fontSize: '0.5vw', color: 'white', position: 'absolute', top: '3px' }} className="fa-solid fa-check" />
-                                            </span>
-                                        )}
-                                    </Button>
-                                    <Button style={{ fontSize: '0.9vw', width: '5.6vw' }} onClick={() => handleSortChange(4)} className={` ${selectedSort === 4 ? 'border border-primary' : 'btn-outline-primary'}`}>
-                                        Nổi bậc
-                                        {selectedSort === 4 && (
-                                            <span className={styles.cornercheck}>
-                                                <i style={{ fontSize: '0.5vw', color: 'white', position: 'absolute', top: '3px' }} className="fa-solid fa-check" />
-                                            </span>
-                                        )}
-                                    </Button>
+                            <div className={styles.productsFilter}>
+                                <strong className={styles.productsFilterLeft}>{t('productlist')}</strong>
+                                <div className={styles.productsFilterRight} >
+                                    <span className={styles.productsFilterRightTitle}>{t('sortby')}</span>
+                                    {sortOptions.map(({ id, label }) => (
+                                        <Button
+                                            key={id}
+                                            style={{ fontSize: '0.9vw', width: '4.9vw' }}
+                                            onClick={() => handleSortChange(id)}
+                                            className={selectedSort === id ? 'border border-primary' : 'btn-outline-primary'}
+                                        >
+                                            {label}
+                                            {selectedSort === id && (
+                                                <span className={styles.cornercheck}>
+                                                    <i
+                                                        className="fa-solid fa-check"
+                                                        style={{
+                                                            fontSize: '0.5vw',
+                                                            color: 'white',
+                                                            position: 'absolute',
+                                                            top: '3px',
+                                                        }}
+                                                    />
+                                                </span>
+                                            )}
+                                        </Button>
+                                    ))}
                                     <Space wrap>
                                         <Select
                                             style={{ textAlign: 'center', width: '8.3vw', fontSize: '0.9vw' }}
-                                            defaultValue="Giá"
+                                            defaultValue='lowtohigh'
                                             onChange={handleChange}
                                             options={[
-                                                { value: 'lowtohigh', label: <span style={{ fontSize: '0.9vw' }} >{'Thấp --> Cao'}</span> },
-                                                { value: 'hightolow', label: <span style={{ fontSize: '0.9vw' }}>{'Cao --> Thấp'}</span> },
+                                                { value: 'lowtohigh', label: <span style={{ fontSize: '0.9vw' }} >{t('lowtohigh')}</span> },
+                                                { value: 'hightolow', label: <span style={{ fontSize: '0.9vw' }}>{t('hightolow')}</span> },
 
                                             ]}
                                         />
@@ -409,7 +408,7 @@ const Home = () => {
                                                                 <strong className='text-center' >{product.price.toLocaleString('vi-VN')}₫</strong>
                                                                 <div className={styles.oldPrice}>399.000₫ -10%</div>
                                                             </div>
-                                                            <button className={styles.buyButton}>Mua Ngay</button>
+                                                            <button className={styles.cardButton}>Mua Ngay</button>
                                                         </div>
                                                     </div>
                                                 </NavLink>
@@ -469,8 +468,8 @@ const Home = () => {
                             cursor: 'pointer',
                             zIndex: 1000,
 
-                            display: 'flex',             
-                            alignItems: 'center',      
+                            display: 'flex',
+                            alignItems: 'center',
                             justifyContent: 'center',
                         }}
                     >

@@ -1,3 +1,5 @@
+/* -------------------------------top-Footer--------------------- */
+
 .topFooter {
     background: #e6f1ff;
     padding: 2vw 0;
@@ -7,7 +9,7 @@
     display: flex;
     justify-content: space-between;
     width: 75%;
-    margin: 0 auto;
+    margin: 1vw auto;
 }
 
 .topFooterLeft {
@@ -15,18 +17,23 @@
     font-weight: 500;
 }
 
+.topFooterLeft i {
+    color:#0373f3 ;
+}
+
 
 .topFooterRight {
     font-weight: 500;
+    font-size: 1.05vw;
     color: #0373f3;
     padding: 0.8vw 2vw;
     border-radius: 99px;
     background-color: white;
 }
 
-/* ---------------------------------footer-------------------------- */
+/* ---------------------------------footer--Main-------------------------- */
 
-.footer {
+.footerMain {
     background-image: url('../../../public/asset/images/mapfooter1.jpg');
     background-size: cover;
     background-repeat: no-repeat;
@@ -34,6 +41,8 @@
     min-height: 18vw;
     display: flex;
     align-items: center;
+    font-size: 0.85vw;
+    color: #a0aab2;
 }
 
 .footerContent {}
@@ -50,8 +59,8 @@
     align-items: center;
     background: black;
     color: white;
-    padding: 10px;
-    border-radius: 20px;
+    padding: 0.65vw;
+    border-radius: 0.8vw;
     margin: 1vw 0; 
 }
 
@@ -61,7 +70,7 @@
     align-items: center;
     background: #0373f3;
     color: white;
-    padding: 10px;
-    border-radius: 20px;
+    padding: 0.65vw;
+    border-radius: 0.8vw;
 }
 

@@ -4,9 +4,14 @@
   --main-color: #0373f3;
 }
 
+/* ----------------------custom-swiper-------------------------- */
+:global(.swiper-button-next::after),
+:global(.swiper-button-prev::after) {
+  font-weight: 800 !important;
+  font-size: 1.5vw !important;
+}
 
 
-.container {}
 
 .loadingOverlay {
   position: fixed;
@@ -15,20 +20,36 @@
   z-index: 9999;
   width: 100vw;
   height: 100vh;
-  background: rgba(255, 255, 255, 0.49);
+  background: rgba(255, 255, 255, 0.6);
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 2rem;
-  color: #ee4e2e;
+  backdrop-filter: blur(1px); /* làm mờ nền */
 }
 
+.customSpinner {
+  width: 45px;
+  height: 45px;
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #0373f3;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 
 /* ---------------------------------topHome--------------------------- */
 
 .topHome {
   display: flex;
-  width: 85%;
+  width: 75%;
   margin: 0 auto;
   padding: 10px 0;
   font-size: 0.8vw;
@@ -50,7 +71,7 @@
 
 .voucher {
   background: #025fca;
-  width: 85%;
+  width: 75%;
   margin: 0 auto;
   height: 64vw;
   border-bottom-left-radius: 12px;
@@ -74,6 +95,23 @@
   overflow: hidden;
   text-overflow: ellipsis;
   font-size: 0.9vw;
+}
+
+
+.cardButton {
+  font-size: 1.05vw;
+  margin: 1vw 0;
+  font-weight: 500;
+  background: #e6f1ff;
+  color: #1e71d1;
+  width: 100%;
+  padding: 0.25vw;
+  border-radius: 5px;
+  border: none;
+}
+
+.cardButton:hover {
+  border: 2px solid #025fca;
 }
 
 
@@ -125,21 +163,7 @@
 }
 
 
-.buyButton {
-  font-size: 1.05vw;
-  margin: 1vw 0;
-  font-weight: 500;
-  background: #e6f1ff;
-  color: #1e71d1;
-  width: 100%;
-  padding: 0.25vw;
-  border-radius: 5px;
-  border: none;
-}
 
-.buyButton:hover {
-  border: 2px solid #025fca;
-}
 
 .cornercheck {
   border-radius: 3px;
@@ -156,7 +180,7 @@
 /* ----------------------------------products------------------------ */
 
 .mainProducts {
-  width: 85%;
+  width: 75%;
   margin: 2vw auto;
   display: flex;
   gap: 1vw;
@@ -178,8 +202,8 @@
 }
 
 .filterContent {
- font-size: 1.6vw;
- font-weight: 500;
+  font-size: 1.6vw;
+  font-weight: 500;
 }
 
 
@@ -188,15 +212,39 @@
   width: 100%;
 }
 
-.productsFitler {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-}
-
 .arrayProducts {
   margin-top: 2rem;
 }
+
+.productsFilter {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.productsFilterLeft {
+  font-size: 1.05vw;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.productsFilterRight {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1vw;
+}
+
+.productsFilterRightTitle {
+  font-size: 0.9vw;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 
 .carditem {
   margin: 0.9vw 0;
@@ -211,9 +259,7 @@
   border: 2px solid #0373f3;
 }
 
-
 /* -----------------------bottom-Home--------------------------- */
-
 
 .bottomHome {
   width: 85%;
@@ -237,6 +283,7 @@
 }
 
 .bottomHomeItemTitle {
+  font-size: 1.1vw;
   font-weight: 500;
 }
 
@@ -252,3 +299,8 @@
   background: #e6f1ff;
   border-radius: 99px;
 }
+
+
+
+
+
