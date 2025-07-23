@@ -231,7 +231,6 @@ const Home = () => {
         {loading ? (
             <div className={styles.loadingOverlay}>
                 <div className={styles.customSpinner}></div>
-                <div style={{ marginTop: '1rem', fontSize: '1.2rem', color: '#0373f3' }}>Loading...</div>
             </div>) : (
             <>
                 <div className={`${styles.container}`}>
