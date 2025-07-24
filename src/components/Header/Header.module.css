@@ -41,23 +41,23 @@
     color: white;
 }
 
-.topHeaderLeft strong{
+.topHeaderLeft strong {
     color: #ecc554;
 }
 
-.topHeaderRight{
+.topHeaderRight {
     display: flex;
 }
 
 
-.topHeaderRightItemLeft span strong{
-    color:#ecc554 ;
+.topHeaderRightItemLeft span strong {
+    color: #ecc554;
 }
 
 
 /* ----------------------------headerMain-------------------------------- */
 
-.headerMain{
+.headerMain {
     background: white;
 }
 
@@ -70,6 +70,7 @@
     color: black;
     margin: 0 auto;
 }
+
 /* --------------------------------navigateLeft-------------------------- */
 .navigateLeft {
     position: relative;
@@ -108,7 +109,7 @@
     width: 100%;
 }
 
-.navigateForm i{
+.navigateForm i {
     font-size: 1.6vw;
     color: var(--main-color);
 }
@@ -123,26 +124,11 @@
 }
 
 .inputButton i {
-    font-size:1vw;
+    font-size: 1vw;
     color: #ffffff;
 }
 
-/* /* --------------------------------navigateRight-------------------------- */ 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* /* --------------------------------navigateRight-------------------------- */
 
 .navigateRight {
     display: flex;
@@ -236,18 +222,6 @@
 }
 
 
-.menuLabel {
-    position: relative;
-    display: inline-block;
-    color: white;
-    font-size: 0.85vw;
-    width: 100%;
-}
-
-
-
-
-
 /* -------------------------card--------------------------------- */
 .productimage {
     width: 100%;
@@ -256,11 +230,11 @@
 
 }
 
-.productdescription{
-white-space: nowrap;
-overflow: hidden;
-text-overflow: ellipsis;
-font-size: 0.9vw;
+.productdescription {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 0.9vw;
 }
 
 .dealsock {
@@ -394,3 +368,4 @@ font-size: 0.9vw;
 .dropdown:hover .dropdowndownloadappcontent {
     display: block;
 }
+

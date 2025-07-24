@@ -12,7 +12,17 @@
 }
 
 
+/* -----------------------custom-andesign------------------------- */
+:global(.ant-menu-item.ant-menu-item-only-child) {
+  /* text-align: center; */
+  padding: 0 1.5vw !important;
 
+}
+
+
+
+
+/* -------------------------loadingOverlay-layer-------------------- */
 .loadingOverlay {
   position: fixed;
   top: 0;
@@ -24,7 +34,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  backdrop-filter: blur(1px); /* làm mờ nền */
+  backdrop-filter: blur(1px);
+  /* làm mờ nền */
 }
 
 .customSpinner {
@@ -40,6 +51,7 @@
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
@@ -156,6 +168,13 @@
   font-size: 1.1vw;
 }
 
+.newPrice {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+}
+
 .oldPrice {
   text-decoration: line-through;
   font-size: 0.8vw;
@@ -192,7 +211,7 @@
 }
 
 .filterTitle {
-  font-size: 1.8vw;
+  font-size: 1.6vw;
   color: #025fca;
 }
 
@@ -300,7 +319,23 @@
   border-radius: 99px;
 }
 
+/*--------------------scrollToTop-Button----------------------------  */
+.scrollToTopButton {
+  width: 2.4vw;
+  height: 2.4vw;
+  position: fixed;
+  bottom: 2.2vw;
+  right: 2.2vw;
 
+  font-size: 1vw;
+  border-radius: 99vw;
+  background-color: #e6f1ff;
+  color: #0053f0;
+  border: 1px solid #0053f0;
+  cursor: pointer;
+  z-index: 1000;
 
-
-
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

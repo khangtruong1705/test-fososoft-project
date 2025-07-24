@@ -6,10 +6,10 @@ import { DOMAIN } from '../../util/config';
 import { Menu, Checkbox, Button, Select, Space } from 'antd';
 import { jwtDecode } from 'jwt-decode';
 import _ from "lodash";
-
+import { getLevelKeys, handleOpenChange } from '../../antdesignhook/useAntdesign'
+import { getFilterItems } from '../../components/FilterItems/FilterItems'
 import InfiniteScroll from 'react-infinite-scroll-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
-
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import { Navigation } from 'swiper/modules';
@@ -89,92 +89,11 @@ const Home = () => {
     ];
 
     // ----------------------use-Menu-component-ant-design------------------------
-    const items = [
-        {
-            key: '1',
-            label: <strong style={{ fontSize: '0.9vw' }}>{t('Categories')}</strong>,
-            children: [
-                { key: '11', label: <span style={{ fontSize: '0.9vw' }}><Checkbox style={{}} onChange={onChange}></Checkbox> Lọc Gió Động Cơ - Air Filter</span> },
-                { key: '12', label: <span style={{ fontSize: '0.9vw' }}><Checkbox onChange={onChange}></Checkbox> Lọc Nhiên Liệu - Fuel Filter</span> },
-                { key: '13', label: <span style={{ fontSize: '0.9vw' }}><Checkbox onChange={onChange}></Checkbox> Bộ lọc dầu</span> },
-                { key: '14', label: <span style={{ fontSize: '0.9vw' }}><Checkbox onChange={onChange}></Checkbox> {t('uncategorized')}</span> },
-                { key: '15', label: <span style={{ fontSize: '0.9vw' }}><Checkbox onChange={onChange}></Checkbox>{t('others')}</span> },
-            ],
-        },
-        {
-            key: '2',
-            label: <strong style={{ fontSize: '0.9vw' }}>{t('pricerange')}</strong>,
-            children: [
-                { key: '21', label: <Button style={{ width: '100%', fontSize: '1vw' }}>{t('under')} 100.000₫</Button> },
-                { key: '22', label: <Button style={{ width: '100%', fontSize: '1vw' }}>100.000₫ - 300.000₫</Button> },
-                { key: '23', label: <Button style={{ width: '100%', fontSize: '1vw' }}>300.000₫ - 500.000₫</Button> },
-                { key: '24', label: <Button style={{ width: '100%', fontSize: '1vw' }}>{t('over')} 500.000₫</Button> },
-            ],
-        },
-        {
-            key: '3',
-            label: <strong style={{ fontSize: '0.9vw' }}>{t('brand')}</strong>,
-            children: [
-                { key: '31', label: <span style={{ fontSize: '0.9vw' }}><Checkbox onChange={onChange}></Checkbox> Asakashi</span> },
-                { key: '32', label: <span style={{ fontSize: '0.9vw' }}><Checkbox onChange={onChange}></Checkbox> Bosch</span> },
-                { key: '33', label: <span style={{ fontSize: '0.9vw' }}><Checkbox onChange={onChange}></Checkbox> Huyndai</span> },
-            ],
-        },
-        {
-            key: '4',
-            label: <strong style={{ fontSize: '0.9vw' }}>{t('yearofmanufacture')}t</strong>,
-            children: [
-                { key: '431', label: <span style={{ fontSize: '0.9vw' }}><Checkbox onChange={onChange}></Checkbox> 2021</span> },
-                { key: '432', label: <span style={{ fontSize: '0.9vw' }}><Checkbox onChange={onChange}></Checkbox> 2020</span> },
-                { key: '433', label: <span style={{ fontSize: '0.9vw' }}><Checkbox onChange={onChange}></Checkbox> 2019</span> },
-                { key: '434', label: <span style={{ fontSize: '0.9vw' }}><Checkbox onChange={onChange}></Checkbox> 2018</span> },
-            ],
-        },
-        {
-            key: '5',
-            label: <strong style={{ fontSize: '0.9vw' }}>{t('origin')}</strong>,
-            children: [
-                { key: '531', label: <span style={{ fontSize: '0.9vw' }}><Checkbox onChange={onChange}></Checkbox> {t('japan')}</span> },
-                { key: '532', label: <span style={{ fontSize: '0.9vw' }}><Checkbox onChange={onChange}></Checkbox> {t('germany')}</span> },
-                { key: '533', label: <span style={{ fontSize: '0.9vw' }}><Checkbox onChange={onChange}></Checkbox> {t('china')}</span> },
-            ],
-        },
-    ];
-    const getLevelKeys = items1 => {
-        const key = {};
-        const func = (items2, level = 1) => {
-            items2.forEach(item => {
-                if (item.key) {
-                    key[item.key] = level;
-                }
-                if (item.children) {
-                    func(item.children, level + 1);
-                }
-            });
-        };
-        func(items1);
-        return key;
-    };
-    const levelKeys = getLevelKeys(items);
+    const filterItems = getFilterItems(t, onChange);
     const [stateOpenKeys, setStateOpenKeys] = useState(['2', '23']);
-    const onOpenChange = openKeys => {
-        const currentOpenKey = openKeys.find(key => stateOpenKeys.indexOf(key) === -1);
-        // open
-        if (currentOpenKey !== undefined) {
-            const repeatIndex = openKeys
-                .filter(key => key !== currentOpenKey)
-                .findIndex(key => levelKeys[key] === levelKeys[currentOpenKey]);
-            setStateOpenKeys(
-                openKeys
-                    // remove repeat key
-                    .filter((_, index) => index !== repeatIndex)
-                    // remove current level all child
-                    .filter(key => levelKeys[key] <= levelKeys[currentOpenKey]),
-            );
-        } else {
-            // close
-            setStateOpenKeys(openKeys);
-        }
+    const levelKeys = getLevelKeys(filterItems);
+    const onOpenChange = (openKeys) => {
+        handleOpenChange(openKeys, stateOpenKeys, setStateOpenKeys, levelKeys);
     };
 
     // -------------------call----APIs---------------------------
@@ -201,13 +120,6 @@ const Home = () => {
             setLoading(false);
         }
     };
-    const [isVisible, setIsVisible] = useState(false);
-    const scrollToTop = () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth',
-        });
-    };
 
     //------------------ reload-when-page-changes----------------
     useEffect(() => {
@@ -215,6 +127,13 @@ const Home = () => {
     }, [page])
 
     // -----------------scroll-to-top-feature--------------------
+    const [isVisible, setIsVisible] = useState(false);
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        });
+    };
     useEffect(() => {
         const toggleVisibility = () => {
             if (window.scrollY > 300) {
@@ -227,6 +146,30 @@ const Home = () => {
 
         return () => window.removeEventListener('scroll', toggleVisibility);
     }, []);
+
+    // ----------------------array-biding-bottomHome------------------------
+    const bottomHomeItems = [
+        {
+            icon: 'fa-money-bill-transfer',
+            title: 'Miễn phí vận chuyển',
+            content: 'Với hóa đơn dưới 1 triệu',
+        },
+        {
+            icon: 'fa-headphones',
+            title: 'Hỗ trợ 24/7',
+            content: 'Đội ngũ CSKH tận tình sẵn sàng lắng nghe và phục vụ tận tâm',
+        },
+        {
+            icon: 'fa-truck-fast',
+            title: 'Giao hàng nhanh 2h',
+            content: 'Trong vòng bán kính 10km nội thành  TP HCM',
+        },
+        {
+            icon: 'fa-cube',
+            title: '30 ngày đổi trả',
+            content: 'Hoàn tiền 100% nếu phát sinh lỗi từ NSX hoặc đơn vị vận chuyển',
+        },
+    ];
     return <>
         {loading ? (
             <div className={styles.loadingOverlay}>
@@ -285,7 +228,7 @@ const Home = () => {
                                                     </div>
                                                     <div className={styles.cardDescription}><strong>{product.description}</strong></div>
                                                     <div className={styles.price}>
-                                                        <strong className='text-center' >{product.price.toLocaleString('vi-VN')}₫</strong>
+                                                        <strong className={styles.newPrice} >{product.price.toLocaleString('vi-VN')}₫</strong>
                                                         <div className={styles.oldPrice}>399.000₫ -10%</div>
                                                     </div>
                                                     <button className={styles.cardButton}>Mua Ngay</button>
@@ -309,8 +252,8 @@ const Home = () => {
                                 defaultSelectedKeys={['1']}
                                 openKeys={stateOpenKeys}
                                 onOpenChange={onOpenChange}
-                                style={{ width: '18vw' }}
-                                items={items}
+                                style={{ width: '16vw' }}
+                                items={filterItems}
                             />
                         </div>
                         <div className={styles.products}>
@@ -419,58 +362,21 @@ const Home = () => {
                         </div>
                     </div>
                     <div className={styles.bottomHome}>
-                        <div className={styles.bottomHomeItem}>
-                            <i className={`${styles.bottomHomeItemIcon} fa-solid fa-money-bill-transfer`} />
-                            <div>
-                                <div className={styles.bottomHomeItemTitle}>Miễn phí vận chuyển</div>
-                                <div className={styles.bottomHomeItemContent}>Với hóa đơn dưới 1 triệu</div>
+                        {bottomHomeItems.map((item, index) => (
+                            <div key={index} className={styles.bottomHomeItem}>
+                                <i className={`${styles.bottomHomeItemIcon} fa-solid ${item.icon}`} />
+                                <div>
+                                    <div className={styles.bottomHomeItemTitle}>{item.title}</div>
+                                    <div className={styles.bottomHomeItemContent}>{item.content}</div>
+                                </div>
                             </div>
-                        </div>
-                        <div className={styles.bottomHomeItem}>
-                            <i className={`${styles.bottomHomeItemIcon} fa-solid fa-headphones`} />
-                            <div>
-                                <div className={styles.bottomHomeItemTitle}>Hỗ trợ 24/7</div>
-                                <div className={styles.bottomHomeItemContent}>Đội ngũ CSKH tận tình sẵn sàng lắng nghe và phục vụ tận tâm</div>
-                            </div>
-                        </div>
-                        <div className={styles.bottomHomeItem}>
-                            <i className={`${styles.bottomHomeItemIcon} fa-solid fa-truck-fast`} />
-                            <div>
-                                <div className={styles.bottomHomeItemTitle}>Giao hàng nhanh 2h</div>
-                                <div className={styles.bottomHomeItemContent}>Trong vòng bán kính 10km nội thành  TP HCM</div>
-                            </div>
-                        </div>
-                        <div className={styles.bottomHomeItem}>
-                            <i className={`${styles.bottomHomeItemIcon} fa-solid fa-cube`} />
-                            <div>
-                                <div className={styles.bottomHomeItemTitle}>30 ngày đổi trả</div>
-                                <div className={styles.bottomHomeItemContent}>Hoàn tiền 100% nếu phát sinh lỗi từ NSX hoặc đơn vị vận chuyển</div>
-                            </div>
-                        </div>
+                        ))}
                     </div>
                 </div >
                 {isVisible && (
                     <button
                         onClick={scrollToTop}
-                        style={{
-                            width: '2.4vw',
-                            height: '2.4vw',
-                            position: 'fixed',
-                            bottom: '2.2vw',
-                            right: '2.2vw',
-
-                            fontSize: '1vw',
-                            borderRadius: '99vw',
-                            backgroundColor: '#e6f1ff',
-                            color: '#0053f0',
-                            border: '1px solid #0053f0',
-                            cursor: 'pointer',
-                            zIndex: 1000,
-
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                        }}
+                        className={styles.scrollToTopButton}
                     >
                         <i className="fa-solid fa-arrow-up" />
                     </button>

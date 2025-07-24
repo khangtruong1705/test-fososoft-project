@@ -1,0 +1,74 @@
+.categoriesDropdownContent {
+    width: 50vw;
+    background: #f4f6f8;
+    padding: 0;
+}
+
+.menuLabel {
+    position: relative;
+    display: inline-block;
+    color: white;
+    font-size: 0.85vw;
+    width: 100%;
+}
+
+.bestseller {
+    display: flex;
+    justify-content: space-between;
+}
+
+.bestsellerLeft {
+    font-size: 1.1vw;
+    font-weight: 500;
+}
+
+.bestsellerRight {
+    color: #3f94f4;
+    font-size: 0.9vw;
+}
+
+.bestsellerRight span {
+    font-weight: 500;
+}
+
+.bestsellerCard {
+    height: 19vw;
+}
+
+
+.bestsellerCardBody img {
+    width: 100%;
+}
+
+.bestsellerCardProductName {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: 500;
+    font-size: 0.9vw;
+}
+
+.bestsellerCardProductPrice {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: 500;
+    font-size: 0.92vw;
+    color: #b71d18;
+}
+
+.bestsellerCardProductOldPrice{
+    font-size: 0.8vw;
+}
+
+.bestsellerCardProductOldPriceChild  {
+    color:#b3bcc5 ;
+    text-decoration:line-through ;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.bestsellerCardProductDiscount{
+    color: red;
+}

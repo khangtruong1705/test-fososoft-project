@@ -2,14 +2,19 @@
 import styles from './Header.module.css'
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Menu, Popover } from 'antd';
+import { Menu } from 'antd';
 import { UnorderedListOutlined } from '@ant-design/icons';
 import { useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
-
+import { categoryChildren } from '../CategoryItems/CategoryItems';
+import { getLevelKeys, handleOpenChange } from '../../antdesignhook/useAntdesign'
 
 
 const Header = () => {
+    // -------------get-state-from-redux--------------------------
+    const amountCart = useSelector((state) => state.getAmountCart.amountCart);
+
+    // ---------------routing---------------------------------------------
     const navigate = useNavigate();
 
     // --------------translate-feature----------------------------
@@ -22,89 +27,9 @@ const Header = () => {
     const changeLanguage = (lng) => {
         i18n.changeLanguage(lng);
     };
-    // -------------get-state-from-redux--------------------------
-    const amountCart = useSelector((state) => state.getAmountCart.amountCart);
 
     // -----------------------use-component-Menu-Ant-Design--------------------------
     const [stateOpenKeys, setStateOpenKeys] = useState(['2', '23']);
-    const categoriesDropdownContent = <div style={{ width: '50vw', background: '#f4f6f8', padding: '0' }}>
-        <div className='items row'>
-            {Array(6).fill('Bộ Lọc Gió').map((text, index) => (
-                <div className='col-4' key={index}>
-                    <div className="  mb-3 card" >
-                        <div className='card-body d-flex align-items-center'>
-                            <img
-                                style={{ width: '3vw' }}
-                                src={process.env.PUBLIC_URL + '/asset/images/locgio.png'}
-                                alt="icon"
-                            />
-                            <div className="ms-1">{text}</div>
-                        </div>
-                    </div>
-                </div>
-            ))}
-        </div>
-        <hr></hr>
-        <div className='bestsell'>
-            <div className='d-flex justify-content-between'>
-                <div style={{ fontSize: '1.2vw', fontWeight: '500' }} >Sản Phẩm Bán Chạy</div>
-                <div style={{ color: '#3f94f4' }}>
-                    <span style={{ fontWeight: '500' }}>Xem tất cả</span>
-                    <i className="fa-solid fa-angles-right mx-1" />
-                </div>
-            </div>
-            <div className='row'>
-                <div className='col-3'>
-                    <div className='card' style={{ height: '17vw' }}>
-                        <div className='card-body'>
-                            <img style={{ width: '100%' }} src={process.env.PUBLIC_URL + '/asset/images/locgio2.png'} />
-                            <p style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', fontWeight: '500' }}>Lọc Gió Động Cơ Air Filter-Chevolet</p>
-                            <div style={{ color: '#b71d18', fontWeight: '500' }}>299.000đ</div>
-                            <div style={{ fontSize: '0.8vw' }}>
-                                <span style={{ color: '#b3bcc5', textDecoration: 'line-through' }}> 199.000 </span>
-                                <span style={{ color: 'red' }}>-10%</span></div>
-                        </div>
-                    </div>
-                </div>
-                <div className='col-3'>
-                    <div className='card' style={{ height: '17vw' }}>
-                        <div className='card-body'>
-                            <img style={{ width: '100%' }} src={process.env.PUBLIC_URL + '/asset/images/locgio1.png'} />
-                            <p style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', fontWeight: '500' }}>Lọc Gió Động Cơ Air Filter-Chevolet</p>
-                            <div style={{ color: '#b71d18', fontWeight: '500' }}>299.000đ</div>
-                            <div style={{ fontSize: '0.8vw' }}>
-                                <span style={{ color: '#b3bcc5', textDecoration: 'line-through' }}> 199.000 </span>
-                                <span style={{ color: 'red' }}>-10%</span></div>
-                        </div>
-                    </div>
-                </div>
-                <div className='col-3'>
-                    <div className='card' style={{ height: '17vw' }}>
-                        <div className='card-body'>
-                            <img style={{ width: '100%' }} src={process.env.PUBLIC_URL + '/asset/images/locgio4.png'} />
-                            <p style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', fontWeight: '500' }}>Lọc Gió Động Cơ Air Filter-Chevolet</p>
-                            <div style={{ color: '#b71d18', fontWeight: '500' }}>299.000đ</div>
-                            <div style={{ fontSize: '0.8vw' }}>
-                                <span style={{ color: '#b3bcc5', textDecoration: 'line-through' }}> 199.000 </span>
-                                <span style={{ color: 'red' }}>-10%</span></div>
-                        </div>
-                    </div>
-                </div>
-                <div className='col-3'>
-                    <div className='card' style={{ height: '17vw' }}>
-                        <div className='card-body'>
-                            <img style={{ width: '100%' }} src={process.env.PUBLIC_URL + '/asset/images/locgio5.png'} />
-                            <p style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', fontWeight: '500' }}>Lọc Gió Động Cơ Air Filter-Chevolet</p>
-                            <div style={{ color: '#b71d18', fontWeight: '500' }}>299.000đ</div>
-                            <div style={{ fontSize: '0.8vw' }}>
-                                <span style={{ color: '#b3bcc5', textDecoration: 'line-through' }}> 199.000 </span>
-                                <span style={{ color: 'red' }}>-10%</span></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     const items = [
         {
             key: '1',
@@ -114,119 +39,33 @@ const Header = () => {
                     {t('Categories')}
                 </span>
             ),
-            children: [
-                {
-                    key: '11',
-                    label: (
-                        <Popover
-                            content={categoriesDropdownContent}
-                            placement="right"
-                            trigger="hover"
-                        >
-                            <span className={styles.menuLabel}>
-                                <i className="fa-solid fa-oil-well mx-1" />
-                                Bộ Lọc dầu
-                            </span>
-                        </Popover>
-                    ),
-                },
-                {
-                    key: '12',
-                    label: (
-                        <Popover
-                            content={categoriesDropdownContent}
-                            placement="right"
-                            trigger="hover"
-                        >
-                            <span className={styles.menuLabel}>
-                                <i className="fa-solid fa-paper-plane mx-1" />
-                                Bộ Lọc Không Khí
-                            </span>
-                        </Popover>
-                    ),
-
-                },
-                {
-                    key: '13',
-                    label: (<Popover
-                        content={categoriesDropdownContent}
-                        placement="right"
-                        trigger="hover"
-                    >
-                        <span className={styles.menuLabel}>
-                            <i className="fa-solid fa-gas-pump mx-1" />
-                            Bộ Lọc Nhiên Liệu</span>,
-                    </Popover>
-                    ),
-                },
-                {
-                    key: '14',
-                    label: (<Popover
-                        content={categoriesDropdownContent}
-                        placement="right"
-                        trigger="hover"
-                    >
-                        <span className={styles.menuLabel}>
-                            <i className="fa-solid fa-house mx-1" />
-                            Bộ Lọc Trong Cabin
-                        </span>
-                    </Popover>
-                    ),
-                },
-            ],
+            children: categoryChildren,
         }
     ];
-    const getLevelKeys = items1 => {
-        const key = {};
-        const func = (items2, level = 1) => {
-            items2.forEach(item => {
-                if (item.key) {
-                    key[item.key] = level;
-                }
-                if (item.children) {
-                    func(item.children, level + 1);
-                }
-            });
-        };
-        func(items1);
-        return key;
-    };
-    const onOpenChange = openKeys => {
-        const currentOpenKey = openKeys.find(key => stateOpenKeys.indexOf(key) === -1);
-        // open
-        if (currentOpenKey !== undefined) {
-            const repeatIndex = openKeys
-                .filter(key => key !== currentOpenKey)
-                .findIndex(key => levelKeys[key] === levelKeys[currentOpenKey]);
-            setStateOpenKeys(
-                openKeys
-                    // remove repeat key
-                    .filter((_, index) => index !== repeatIndex)
-                    // remove current level all child
-                    .filter(key => levelKeys[key] <= levelKeys[currentOpenKey]),
-            );
-        } else {
-            // close
-            setStateOpenKeys(openKeys);
-        }
-    };
     const levelKeys = getLevelKeys(items);
-    const product = {
-        category_id: 17,
-        created_at: "2025-04-23",
-        description: "Lắc tay vàng 18K với họa tiết tinh xảo",
-        detailed_description: "Lắc tay vàng mang lại sự may mắn và vẻ đẹp sang trọng",
-        image: "/asset/images/phukientrangsucnu/phukientrangsucnu9.webp",
-        name: "Lắc tay vàng 18K",
-        price: 5000000,
-        product_id: 171,
-        rating: 4.88,
-        shop_name_id: 3,
-        sold: 70,
-        updated_at: null,
-        views: 344
+    const onOpenChange = (openKeys) => {
+        handleOpenChange(openKeys, stateOpenKeys, setStateOpenKeys, levelKeys);
     };
 
+    // --------------------arrays-for-binding------------------------------------
+    const product = {
+        category_id: 17, created_at: "2025-04-23", description: "Lắc tay vàng 18K với họa tiết tinh xảo",
+        detailed_description: "Lắc tay vàng mang lại sự may mắn và vẻ đẹp sang trọng",
+        image: "/asset/images/phukientrangsucnu/phukientrangsucnu9.webp", name: "Lắc tay vàng 18K",
+        price: 5000000, product_id: 171, rating: 4.88, shop_name_id: 3, sold: 70, updated_at: null, views: 344
+    };
+    const menuLeftItems = [
+        { key: 'aboutus', label: t('aboutus') },
+        { key: 'blogposts', label: t('blogposts') },
+        { key: 'catalog', label: 'Catalog' },
+        { key: 'contactus', label: t('contactus') },
+    ];
+    const menuRightItems = [
+        { icon: 'fa-clock', textKey: 'support', suffix: ' 24/7' },
+        { icon: 'fa-hand-holding-heart', textKey: 'freeshipping' },
+        { icon: 'fa-truck', textKey: 'expressdelivery' },
+        { icon: 'fa-rotate', textKey: 'return', className: 'fw-medium', style: { margin: 0 } },
+    ];
     return <div className={`${styles.header} p-0`}>
         <div className={styles.topHeader} >
             <div className={styles.topHeaderLeft} >{t('entercode')} <strong>NEWBIE</strong> {t('statement1')}</div>
@@ -276,7 +115,7 @@ const Header = () => {
                             <div >
                                 <span style={{ cursor: 'pointer' }} onClick={() => {
                                     setLanguage(<div>
-                                        <img style={{width:'1.7vw',height:'1.7vw',margin:'0 0.2vw' }} className={styles.usaIcon}  src={process.env.PUBLIC_URL + '/asset/images/flaguk.png'} />
+                                        <img style={{ width: '1.7vw', height: '1.7vw', margin: '0 0.2vw' }} className={styles.usaIcon} src={process.env.PUBLIC_URL + '/asset/images/flaguk.png'} />
                                         <span>ENG</span>
                                     </div>)
                                     changeLanguage('en')
@@ -332,28 +171,23 @@ const Header = () => {
                         style={{ width: '15.5vw', height: '100%', background: '#0155c6', borderRadius: '10px' }}
                         items={items}
                     />
-                    <div className={`${styles.menuItem}`}>{t('aboutus')}</div>
-                    <div className={`${styles.menuItem}`}>{t('blogposts')}</div>
-                    <div className={`${styles.menuItem}`}>Catalog</div>
-                    <div className={`${styles.menuItem}`}>{t('contactus')}</div>
+                    {menuLeftItems.map(item => (
+                        <div key={item.key} className={styles.menuItem}>
+                            {item.label}
+                        </div>
+                    ))}
                 </div>
                 <div className={`${styles.rightMenu}`}>
-                    <div className={`${styles.menuItem}`}>
-                        <i className={`${styles.menuIcon} fa-solid fa-clock mx-1`} />
-                        {t('support')} 24/7
-                    </div>
-                    <div className={`${styles.menuItem}`}>
-                        <i className={`${styles.menuIcon} fa-solid fa-hand-holding-heart mx-1`} />
-                        {t('freeshipping')}
-                    </div>
-                    <div className={`${styles.menuItem}`}>
-                        <i className={`${styles.menuIcon} fa-solid fa-truck mx-1`} />
-                        {t('expressdelivery')}
-                    </div>
-                    <div style={{ margin: '0' }} className={`${styles.menuItem} fw-medium`}>
-                        <i className={`${styles.menuIcon} fa-solid fa-rotate mx-1`} />
-                        {t('return')}
-                    </div>
+                    {menuRightItems.map((item, index) => (
+                        <div
+                            key={index}
+                            className={`${styles.menuItem} ${item.className || ''}`}
+                            style={item.style}
+                        >
+                            <i className={`${styles.menuIcon} fa-solid ${item.icon} mx-1`} />
+                            {t(item.textKey)}{item.suffix || ''}
+                        </div>
+                    ))}
                 </div>
             </div>
         </div>

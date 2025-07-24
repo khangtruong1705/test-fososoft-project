@@ -9,21 +9,7 @@ import { jwtDecode } from 'jwt-decode';
 
 
 const HeaderAndFooter = () => {
-    const [token, setToken] = useState(localStorage.getItem('token'));
     const [count, setCount] = useState(0);
-    const fetchData = async () => {
-        try {
-            const { email } = jwtDecode(token);
-            await axios.get(`${DOMAIN}/api/shop-name/get-shop-by-email-owner/${email}`);
-
-        } catch (error) {
-            console.error('Error fetching products:', error);
-            setToken(null)
-        }
-    };
-    useEffect(() => {
-        fetchData();
-    }, []);
     return (
         <>
             <Header count={count} setCount={setCount} />
