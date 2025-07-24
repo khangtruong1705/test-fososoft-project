@@ -54,7 +54,7 @@ const ProductDetail = () => {
                     message: 'Cảnh báo',
                     description: t('needlogin'),
                 });
-                alert(t('needlogin'))
+                navigate('/login')
             }
         }
     });

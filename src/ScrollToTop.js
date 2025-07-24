@@ -5,7 +5,7 @@ function ScrollToTop() {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo(0, 0); // Cuộn lên đầu trang
   }, [pathname]);
 
   return null;

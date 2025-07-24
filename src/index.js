@@ -9,8 +9,9 @@ import { store } from './redux/configStore';
 import Login from './pages/Login/Login';
 import ShopName from './pages/ShopName/ShopName';
 import './i18n';
-import { GoogleOAuthProvider } from '@react-oauth/google';
 import ScrollToTop from './ScrollToTop';
+import { GoogleOAuthProvider } from '@react-oauth/google';
+
 
 
 
@@ -23,7 +24,7 @@ root.render(
   <Provider store={store}>
     <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
       <HistoryRouter history={history}>
-        <ScrollToTop />
+         <ScrollToTop />
         <Routes>
           <Route element={<HeaderAndFooter />}>
             <Route index element={<Home />} path="/"></Route>
