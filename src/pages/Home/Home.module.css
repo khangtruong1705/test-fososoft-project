@@ -15,8 +15,12 @@
 /* -----------------------custom-andesign------------------------- */
 :global(.ant-menu-item.ant-menu-item-only-child) {
   /* text-align: center; */
-  padding: 0 1.5vw !important;
-
+  padding: 1.7vw 0.9vw !important;
+  color: black;
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 

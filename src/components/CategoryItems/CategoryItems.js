@@ -66,8 +66,11 @@ export const categoryChildren = [
         label: (
             <Popover content={categoriesDropdownContent} placement="right" trigger="hover">
                 <span className={styles.menuLabel}>
-                    <i className="fa-solid fa-oil-well mx-1" />
-                    Bộ Lọc dầu
+                    <div className={styles.menuLabelContent}>
+                        <img  src={process.env.PUBLIC_URL + '/asset/images/locgio.png'}></img>
+                        <span>Bộ Lọc dầu</span>
+                    </div>
+                    <i className="fa-solid fa-angle-right" />
                 </span>
             </Popover>
         ),
@@ -77,8 +80,11 @@ export const categoryChildren = [
         label: (
             <Popover content={categoriesDropdownContent} placement="right" trigger="hover">
                 <span className={styles.menuLabel}>
-                    <i className="fa-solid fa-paper-plane mx-1" />
-                    Bộ Lọc Không Khí
+                    <div className={styles.menuLabelContent}>
+                        <img src={process.env.PUBLIC_URL + '/asset/images/locgio2.png'}></img>
+                        <span>Bộ Lọc Không Khí</span>
+                    </div>
+                    <i className="fa-solid fa-angle-right" />
                 </span>
             </Popover>
         ),
@@ -88,8 +94,11 @@ export const categoryChildren = [
         label: (
             <Popover content={categoriesDropdownContent} placement="right" trigger="hover">
                 <span className={styles.menuLabel}>
-                    <i className="fa-solid fa-gas-pump mx-1" />
-                    Bộ Lọc Nhiên Liệu
+                    <div className={styles.menuLabelContent}>
+                        <img src={process.env.PUBLIC_URL + '/asset/images/locnhienlieu.png'}></img>
+                        <span>Bộ Lọc Nhiên Liệu</span>
+                    </div>
+                    <i className="fa-solid fa-angle-right" />
                 </span>
             </Popover>
         ),
@@ -99,8 +108,11 @@ export const categoryChildren = [
         label: (
             <Popover content={categoriesDropdownContent} placement="right" trigger="hover">
                 <span className={styles.menuLabel}>
-                    <i className="fa-solid fa-house mx-1" />
-                    Bộ Lọc Trong Cabin
+                    <div className={styles.menuLabelContent}>
+                        <img src={process.env.PUBLIC_URL + '/asset/images/locgio6.jpg'}></img>
+                        <span>Bộ Lọc Trong Cabin</span>
+                    </div>
+                    <i className="fa-solid fa-angle-right" />
                 </span>
             </Popover>
         ),
