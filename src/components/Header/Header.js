@@ -1,5 +1,5 @@
 
-import styles from './Header.module.css'
+import styles from './Header.module.scss'
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Menu } from 'antd';
@@ -173,7 +173,8 @@ const Header = () => {
                     />
                     {menuLeftItems.map(item => (
                         <div key={item.key} className={styles.menuItem}>
-                            {item.label}
+                            <span className={styles.textMain}>{item.label}</span>
+                            <span className={styles.textHover}>{item.label}</span>
                         </div>
                     ))}
                 </div>

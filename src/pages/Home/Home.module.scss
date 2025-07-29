@@ -1,0 +1,344 @@
+// Biến dùng toàn cục
+$main-color: #0373f3;
+$highlight-color: #025fca;
+$gray-text: #a5b0bb;
+$soft-blue-bg: #e6f1ff;
+$soft-orange: #ffe4ca;
+$primary-text: #0053f0;
+
+/* ---------------------- Custom Swiper -------------------------- */
+:global {
+
+  .swiper-button-next::after,
+  .swiper-button-prev::after {
+    font-weight: 800 !important;
+    font-size: 1.5vw !important;
+  }
+
+  .ant-menu-item.ant-menu-item-only-child {
+    padding: 1.7vw 0.9vw !important;
+    color: black;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+/* ---------------------- Loading Overlay ------------------------ */
+.loadingOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(255, 255, 255, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(1px);
+}
+
+.customSpinner {
+  width: 45px;
+  height: 45px;
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid $main-color;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---------------------- Top Home ------------------------------- */
+.topHome {
+  display: flex;
+  width: 75%;
+  margin: 0 auto;
+  padding: 10px 0;
+  font-size: 0.8vw;
+
+  &Text1 {
+    color: #a3afba;
+  }
+
+  &Text2 {
+    color: $main-color;
+  }
+}
+
+/* ------------------------ Carousel ----------------------------- */
+.voucher {
+  background: $highlight-color;
+  width: 75%;
+  margin: 0 auto;
+  height: 64vw;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+.carousel {
+  padding: 2vw;
+}
+
+.carouselCard {
+  height: 31vw;
+}
+
+.cardDescription {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 0.9vw;
+}
+
+.cardButton {
+  font-size: 1.05vw;
+  margin: 1vw 0;
+  font-weight: 500;
+  background: #e0f7ff; // $soft-blue-bg;
+  color: #0b3d91;       // $main-color;
+  width: 100%;
+  padding: 0.25vw;
+  border-radius: 5px;
+  border: none;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0.2) 100%);
+    
+    -webkit-mask: linear-gradient(90deg, transparent, white, transparent);
+    mask: linear-gradient(90deg, transparent, white, transparent);
+
+    pointer-events: none;
+    transition: all 0.5s ease;
+  }
+
+  &:hover::before {
+    left: 100%;
+  }
+
+  &:hover {
+    border: 1.5px solid #0b3d91; 
+  }
+}
+
+
+
+.productImage {
+  width: 100%;
+  height: 15vw;
+  object-fit: cover;
+}
+
+.dealSock {
+  display: flex;
+  align-items: center;
+  margin-top: 0.9vw;
+  font-size: 0.9vw;
+  width: 60%;
+  padding: 0.15vw;
+  background-color: #ffc339;
+  border-radius: 99px;
+
+  &icon {
+    padding: 2px;
+    border-radius: 99px;
+    color: #ff8641;
+    background: $soft-orange;
+    font-size: 0.9vw;
+  }
+
+  &content {
+    color: #7a0916;
+    font-size: 0.9vw;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.price {
+  margin-top: 1vw;
+  color: #b71d18;
+  font-size: 1.1vw;
+
+  .newPrice {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .oldPrice {
+    text-decoration: line-through;
+    font-size: 0.8vw;
+    color: $gray-text;
+  }
+}
+
+.cornerCheck {
+  border-radius: 3px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20px;
+  height: 20px;
+  background-color: #0d6efd;
+  clip-path: polygon(100% 0, 100% 100%, 0 0);
+}
+
+/* ------------------------ Products ----------------------------- */
+.mainProducts {
+  width: 75%;
+  margin: 2vw auto;
+  display: flex;
+  gap: 1vw;
+}
+
+.filter {
+  background: white;
+  max-height: 18vw;
+
+  &Title {
+    font-size: 1.6vw;
+    color: $highlight-color;
+  }
+
+  &Icon {
+    color: $highlight-color;
+    margin: 0 1vw;
+  }
+
+  &Content {
+    font-size: 1.6vw;
+    font-weight: 500;
+  }
+}
+
+.products {
+  width: 100%;
+
+  .arrayProducts {
+    margin-top: 2rem;
+  }
+
+  &Filter {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &Left {
+      font-size: 1.05vw;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    &Right {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1vw;
+
+      &Title {
+        font-size: 0.9vw;
+        font-weight: 500;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+}
+
+.carditem {
+  margin: 0.9vw 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 10px;
+  height: 30vw;
+
+  &:hover {
+    box-shadow: 0 0 16px 4px rgba(3, 115, 243, 0.7);
+    transform: translateY(-2px);
+    border: 2px solid $main-color;
+  }
+}
+
+/* ------------------------ Bottom Home -------------------------- */
+.bottomHome {
+  width: 85%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &Item {
+    border-radius: 10px;
+    padding: 1.5vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.6vw;
+    background-color: #ffffff;
+    margin: 2vw 0;
+    width: 19vw;
+    height: 7vw;
+
+    &Title {
+      font-size: 1.1vw;
+      font-weight: 500;
+    }
+
+    &Content {
+      font-size: 0.8vw;
+      color: #a7b0b8;
+    }
+
+    &Icon {
+      font-size: 1.4vw;
+      color: $main-color;
+      padding: 0.5vw;
+      background: $soft-blue-bg;
+      border-radius: 99px;
+    }
+  }
+}
+
+/* ------------------------ Scroll To Top Button ----------------- */
+.scrollToTopButton {
+  width: 2.4vw;
+  height: 2.4vw;
+  position: fixed;
+  bottom: 2.2vw;
+  right: 2.2vw;
+  font-size: 1vw;
+  border-radius: 99vw;
+  background-color: $soft-blue-bg;
+  color: $primary-text;
+  border: 1px solid $primary-text;
+  cursor: pointer;
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

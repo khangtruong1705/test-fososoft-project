@@ -1,4 +1,4 @@
-import styles from './Home.module.css' // Import CSS Module
+import styles from './Home.module.scss' // Import CSS Module
 import { NavLink } from "react-router-dom";
 import { useState, useEffect } from 'react'
 import axios from 'axios';
@@ -221,8 +221,8 @@ const Home = () => {
                                         >
                                             <div className={`${styles.carouselCard} card`}>
                                                 <div className='card-body'>
-                                                    <img className={styles.productimage} src={`${process.env.PUBLIC_URL} ${product.image}`} />
-                                                    <div className={styles.dealsock}  >
+                                                    <img className={styles.productImage} src={`${process.env.PUBLIC_URL} ${product.image}`} />
+                                                    <div className={styles.dealSock}  >
                                                         <i className={`${styles.dealsockicon} fa-solid fa-fire mx-1`} />
                                                         <span className={styles.dealsockcontent}>Giá cực sốc</span>
                                                     </div>
@@ -270,7 +270,7 @@ const Home = () => {
                                         >
                                             {label}
                                             {selectedSort === id && (
-                                                <span className={styles.cornercheck}>
+                                                <span className={styles.cornerCheck}>
                                                     <i
                                                         className="fa-solid fa-check"
                                                         style={{
@@ -340,8 +340,8 @@ const Home = () => {
                                                 >
                                                     <div className={`${styles.carditem} card`}>
                                                         <div className='card-body'>
-                                                            <img className={styles.productimage} src={`${process.env.PUBLIC_URL} ${product.image}`} />
-                                                            <div className={styles.dealsock}  >
+                                                            <img className={styles.productImage} src={`${process.env.PUBLIC_URL} ${product.image}`} />
+                                                            <div className={styles.dealSock}  >
                                                                 <i className={`${styles.dealsockicon} fa-solid fa-fire mx-1`} />
                                                                 <span className={styles.dealsockcontent}>Giá cực sốc</span>
                                                             </div>
