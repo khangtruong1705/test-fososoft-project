@@ -96,19 +96,63 @@
 }
 
 .navigateForm {
-    display: flex;
-    align-items: center;
-    border: 2px solid #007bff;
-    border-radius: 999px;
-    padding: 0.8vw;
-    width: 95%;
-    height: 40%;
+  display: flex;
+  align-items: center;
+  border: 2px solid #007bff;
+  border-radius: 999px;
+  padding: 0.8vw;
+  width: 95%;
+  height: 40%;
+  position: relative;
+  overflow: hidden;
 }
 
 .inputForm {
-    border: none;
-    width: 100%;
+  border: none;
+  outline: none;
+  flex: 1;
+  padding: 0.5vw;
+  background: transparent;
+  font-size: 1vw;
+  z-index: 1; // để nội dung hiển thị trên lớp hiệu ứng
+
+  // hiệu ứng border chạy quanh
+  position: relative;
 }
+
+.navigateForm::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  padding: 0.15vw;
+  background: linear-gradient(270deg, #00f2fe, #4facfe, #00f2fe); // màu chạy quanh
+  background-size: 600% 600%;
+  z-index: 0;
+  transition: opacity 0.3s ease;
+  opacity: 0;
+  animation: borderAnimation 3s linear infinite;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  pointer-events: none;
+}
+
+.navigateForm:hover::before,
+.navigateForm:focus-within::before {
+  opacity: 1;
+}
+
+@keyframes borderAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
 
 .navigateForm i {
     font-size: 1.6vw;
